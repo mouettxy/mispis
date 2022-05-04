@@ -12,6 +12,7 @@ class Database:
   def connect(self):
     try:
       self.connection = sqlite3.connect('monitoring.db')
+      self.connection.row_factory = sqlite3.Row
       print("Connection to SQLite DB successful")
     except Error as e:
       print(f"The error '{e}' occurred")

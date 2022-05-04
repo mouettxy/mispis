@@ -9,17 +9,13 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
- return render_template('pages/index.html')
-
-if __name__ == '__main__':
   db = Database()
 
-  user = UserController(db)
-  service = ServiceController(db)
-  announcement = AnnouncementController(db)
+  controller = ServiceController(db)
 
-  print(user.get_all())
-  print(service.get_all())
-  print(announcement.get_all())
+  services = controller.get_all()
 
+  return render_template('pages/index.html', services=services)
+
+if __name__ == '__main__':
   app.run(debug=True)

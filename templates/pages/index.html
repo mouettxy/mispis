@@ -2,4 +2,22 @@
 
 {% block content %}
   <h1 class="text-center">{% block title %} Мониторинг сервисов {% endblock %}</h1>
+  {% for service in services %}
+    <a href="{{ service['url' ]}}">
+      <h2>{{ service['title'] }}</h2>
+    </a>
+
+    {% if service['status'] >= 200 and service['status'] < 300 %}
+      <span class="badge badge-success">{{ service['status'] }}</span>
+    {% endif %}
+
+    {% if service['status'] >= 300 and service['status'] < 400 %}
+      <span class="badge badge-warning">{{ service['status'] }}</span>
+    {% endif %}
+    
+    {% if service['status'] >= 400 %}
+      <span class="badge badge-danger">{{ service['status'] }}</span>
+    {% endif %}
+    <hr>
+  {% endfor %}
 {% endblock %}
