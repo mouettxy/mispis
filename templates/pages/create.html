@@ -1,0 +1,26 @@
+{% extends 'mixins/base.html' %} 
+
+{% block content %}
+  <h1>{% block title %} Новый сервис {% endblock %}</h1>
+
+  <form method="post">
+    <div class="form-group">
+      <label for="title">Название</label>
+      <input
+        type="text"
+        name="title"
+        placeholder="Yandex"
+        class="form-control"
+        value="{{ request.form['title'] }}"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="url">Ссылка</label>
+      <textarea name="url" placeholder="https://" class="form-control">{{ request.form['url'] }}</textarea>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Создать</button>
+    </div>
+  </form>
+{% endblock %}
