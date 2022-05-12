@@ -5,11 +5,11 @@ class UserController:
     self.DB = DB
   
   def get_all(self):
-    return self.DB.query('''
+    return self.DB.execute('''
       SELECT * FROM users
     ''')
   
   def get_by_id(self, id: int):
-    return self.DB.query(f'''
+    return self.DB.execute(f'''
       SELECT * FROM users WHERE id = {id}
     ''')

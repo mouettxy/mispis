@@ -16,13 +16,13 @@ class ServiceController:
     self.DB = DB
 
   def get_all(self):
-    return self.DB.query('''
+    return self.DB.execute('''
       SELECT * FROM services
       INNER JOIN users ON users.id = services.user_id
     ''')
 
   def get_by_id(self, id: int):
-    service = self.DB.query(f'''
+    service = self.DB.execute(f'''
       SELECT * FROM services 
       INNER JOIN users ON users.id = services.user_id
       WHERE services.id = {id}
@@ -51,7 +51,7 @@ class ServiceController:
   def update(self, data: ServiceUpdateDto):
     return self.DB.query(f'''
       UPDATE services
-      SET title = "{data['title']}", url = "{data['url']}"
+      SET title = '{data['title']}', url = '{data['url']}'
       WHERE id = {data['id']}
     ''')
   
