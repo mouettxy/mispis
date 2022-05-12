@@ -16,10 +16,12 @@ class ServiceController:
     self.DB = DB
 
   def get_all(self):
-    return self.DB.execute('''
+    services = self.DB.query('''
       SELECT * FROM services
       INNER JOIN users ON users.id = services.user_id
     ''')
+
+    return services
 
   def get_by_id(self, id: int):
     service = self.DB.execute(f'''
